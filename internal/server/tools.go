@@ -85,7 +85,7 @@ func (s *Server) handleReviewStaged(ctx context.Context, _ *mcp.CallToolRequest,
 }
 
 // handleReviewUnstaged handles the review_unstaged tool.
-func (s *Server) handleReviewUnstaged(ctx context.Context, req *mcp.CallToolRequest, args ReviewUnstagedInput) (*mcp.CallToolResult, any, error) {
+func (s *Server) handleReviewUnstaged(ctx context.Context, _ *mcp.CallToolRequest, args ReviewUnstagedInput) (*mcp.CallToolResult, any, error) {
 	repoPath := resolveRepoPath(args.RepoPath)
 	slog.InfoContext(ctx, "review_unstaged invoked", "repo_path", repoPath, "provider", args.Provider)
 
@@ -126,7 +126,7 @@ func (s *Server) handleReviewUnstaged(ctx context.Context, req *mcp.CallToolRequ
 }
 
 // handleReviewCommit handles the review_commit tool.
-func (s *Server) handleReviewCommit(ctx context.Context, req *mcp.CallToolRequest, args ReviewCommitInput) (*mcp.CallToolResult, any, error) {
+func (s *Server) handleReviewCommit(ctx context.Context, _ *mcp.CallToolRequest, args ReviewCommitInput) (*mcp.CallToolResult, any, error) {
 	if args.SHA == "" {
 		return toolError("'sha' is required for review_commit"), nil, nil
 	}
@@ -172,7 +172,7 @@ func (s *Server) handleReviewCommit(ctx context.Context, req *mcp.CallToolReques
 }
 
 // handleReviewCode handles the review_code tool.
-func (s *Server) handleReviewCode(ctx context.Context, req *mcp.CallToolRequest, args ReviewCodeInput) (*mcp.CallToolResult, any, error) {
+func (s *Server) handleReviewCode(ctx context.Context, _ *mcp.CallToolRequest, args ReviewCodeInput) (*mcp.CallToolResult, any, error) {
 	if args.Code == "" {
 		return toolError("'code' is required and must not be empty"), nil, nil
 	}
